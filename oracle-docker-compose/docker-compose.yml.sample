@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: oracle/database:19.3.0-ee
+    container_name: oracle
+    ports:
+      - "{ホスト側のポート番号}:1521"
+      - "{ホスト側のポート番号}:5500"
+    volumes:
+      - ../oradata:/opt/oracle/oradata
+      - ./startup:/opt/oracle/scripts/startup
+    environment:
+      - ORACLE_PWD=oracle123
+      - ORACLE_PDB=SCHLPDB
+      - TZ=Asia/Tokyo
